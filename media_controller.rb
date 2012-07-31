@@ -1,5 +1,8 @@
 #gem install x10-cm17a
 
+require 'x10/cm17a'
+require 'rake'
+
 class MediaController
 
   def initialize(broken_build_music, fixed_build_music)
@@ -7,22 +10,18 @@ class MediaController
     @fixed_build_music = fixed_build_music
   end
 
-  def play_broken_sound_one_time()
+  def broken!()
      if(!@sound_has_played)
       build_is_broken()
+       turn_on_lamp()
      end
-     @sound_has_played = true
   end
 
-  def play_fixed_sound_one_time()
+  def fixed!()
     if (!@sound_has_played)
        build_is_back()
+      turn_off_lamp()
     end
-    @sound_has_played = true
-  end
-
-  def reset_sound()
-   @sound_has_played = false
   end
 
   private

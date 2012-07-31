@@ -1,8 +1,4 @@
 #gem install x10-cm17a
-
-require 'x10/cm17a'
-require 'rake'
-
 class BuildNotification
 
   def initialize(media_controller, build_watcher)
@@ -24,12 +20,10 @@ class BuildNotification
   def check_the_builds()
     if(we_broke_the_build)
        @broken_build = true
-       turn_on_lamp()
-       play_broken_sound_one_time()
+       @media_controller.broken!
     elsif (we_fixed_the_build)
         @broken_build = false
-        turn_off_lamp()
-        play_fixed_sound_one_time()
+        @media_controller.fixed!
     end
   end
 
